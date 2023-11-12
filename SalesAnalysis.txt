@@ -1,0 +1,104 @@
+SALES ANALYSIS
+
+
+
+
+******REVENUE
+
+SELECT
+    Order_ID,
+    SUM(Quantity_Ordered * Price_Each) AS TotalSales
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Order_ID;
+    
+    
+
+*******MONTHLY SALES TREND
+    SELECT
+    MONTH(Order_Date) AS Month,
+    SUM(Quantity_Ordered * Price_Each) AS TotalSales
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Month;
+
+
+
+******TOP SELLING PRODUCTS
+ SELECT
+    Product,
+    SUM(Quantity_Ordered) AS TotalQuantity
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Product
+ORDER BY
+    TotalQuantity DESC;
+ 
+ 
+ 
+ *****POPULAR CITIES FOR SALES
+ 
+ SELECT
+    City,
+    SUM(Quantity_Ordered * Price_Each) AS TotalSales
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    City
+ORDER BY
+    TotalSales DESC;
+
+
+
+*****HOURLY SALES ANALYSIS
+
+SELECT
+    EXTRACT(HOUR FROM OrderDate) AS Hour,
+    SUM(Quantity_Ordered * Price_Each) AS TotalSales
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Hour;
+    
+
+
+********ORDER FREQUENCY   
+SELECT
+    Order_ID,
+ COUNT(*) AS OrderFrequency
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Order_ID;
+
+
+
+*****SALES BY ADDRESS
+SELECT
+    Purchase_Address,
+    SUM(Quantity_Ordered * Price_Each) AS TotalSales
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    PurchaseAddress
+ORDER BY
+    TotalSales DESC;
+
+
+
+*****PRODUCT PERFORMANCE
+
+SELECT
+    Product,
+    SUM(Quantity_Ordered) AS TotalQuantityOrdered,
+    SUM(Sales) AS TotalSales,
+    Price_Each
+FROM
+     `meriskill-403908.Project3.sales data` 
+GROUP BY
+    Product, Price_Each;
+
+
